@@ -1,5 +1,5 @@
 # HelthMonitor_SetUp
-This ansible playbook will set up the entire project conigured HealthCheck repo automatically
+This ansible playbook will set up the entire project described in HealthCheck repo automatically
 
 # Execute Below command and then test on any web browser http://localhost
 
