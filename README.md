@@ -17,4 +17,5 @@ This ansible playbook will set up the entire project described in HealthCheck re
   
       echo "ansible ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-  #** Mae sure ansible is installed and configured or "ansible" user to use ansible and ssh (password less)
+
+## ** Mae sure ansible is installed and configured or "ansible" user to use ansible and ssh (password less)
