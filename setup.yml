@@ -1,0 +1,44 @@
+---
+- name: Health Monitor Set Up
+  hosts: all
+  become : true
+  tasks:
+  - name: Install Packages
+    apt:
+      name: "{{ item }}"
+      state: latest
+    loop:
+    - git
+    - python3
+    - python3-django
+    - nginx
+  - name: Git Clone
+    shell: rm -rf /home/ansible/HealthCheck ; git clone https://github.com/aritramondal-1711/HealthCheck.git
+  - name: Static File Setup
+    shell: /usr/bin/python3 /home/ansible/HealthCheck/monitor/manage.py collectstatic
+  - name: Health Monitor Service SetUP
+    copy:
+      src: /home/ansible/HealthCheck/healthmonitor.service
+      dest: /etc/systemd/system/healthmonitor.service
+  - name: Data Collection Serice SetUp
+    copy:
+      src: /home/ansible/HealthCheck/datacollect.service
+      dest: /etc/systemd/system/datacollect.service
+  - name: Push NGINX Conf in sites-enabled
+    copy:
+      src: /home/ansible/HealthCheck/default
+      dest: /etc/nginx/sites-enabled/default
+  - name: Change Permission of files
+    shell: chmod o+rx /home ; chmod o+rx /home/ansible; chmod -R o+rx /home/ansible/HealthCheck/; chown -R ansible:ansible /home/ansible/HealthCheck/ 
+  - name:  Reload Daemon
+    systemd:
+      daemon_reload: yes
+  - name: Start Services
+    systemd:
+      name: "{{ item }}"
+      state: restarted
+    loop:
+    - datacollect.service
+    - healthmonitor.service
+    - nginx
+...
