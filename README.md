@@ -3,7 +3,7 @@ This ansible playbook will set up the entire project described in HealthCheck re
 
 # Execute Below command and then test on any web browser http://localhost
 
-    ansible-playbook setup.yml 
+    ansible-playbook /home/ansible/HelthMonitor_SetUp/setup.yml 
 
 # Prerequisites
 
