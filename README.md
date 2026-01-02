@@ -3,6 +3,7 @@ This ansible playbook will set up the entire project described in HealthCheck re
 
 # Execute Below command and then test on any web browser http://localhost
 
+    # Log in to "ansible" user
     cd
     git clone https://github.com/aritramondal-1711/HelthMonitor_SetUp.git
     ansible-playbook /home/ansible/HelthMonitor_SetUp/setup.yml -i /home/ansible/HelthMonitor_SetUp/hosts
